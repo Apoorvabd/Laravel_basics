@@ -13,6 +13,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Course</th>
+            <th>Action</th>
         </tr>
 
        @foreach($students as $student)
@@ -22,11 +23,33 @@
             <td>{{$student->name}}</td>
             <td>{{$student->email}}</td>
             <td>{{$student->course}}</td>
+            <td>
+    <a href="/student/edit/{{ $student->id }}">
+        Edit
+    </a>
+    <br>
+    <a href="#"
+   onclick="deleteStudent({{ $student->id }})">
+   Delete
+</a>
+
+
+</td>
         </tr>
+        
         }
         @endforeach
 
     </table>
-
+    
 </body>
+<script>
+function deleteStudent(id)
+{
+    if(confirm('Are you sure you want to delete this student?'))
+    {
+        window.location.href = '/student/delete/' + id;
+    }
+}
+</script>
 </html>
